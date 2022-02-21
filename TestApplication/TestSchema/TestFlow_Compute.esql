@@ -1,0 +1,12 @@
+BROKER SCHEMA TestSchema
+
+DECLARE ExampleUDP EXTERNAL CHARACTER;
+
+CREATE COMPUTE MODULE TestFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+        SET OutputRoot.JSON.Data.ExampleUDP = ExampleUDP;
+		RETURN TRUE;
+	END;
+END MODULE;
